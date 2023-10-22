@@ -10,3 +10,5 @@ DB_PORT = os.environ.get('DB_PORT')
 DB_NAME = os.environ.get('DB_NAME')
 
 SECRET_AUTH = os.environ.get("SECRET_AUTH")
+SMTP_USER = 'nerooren4001@gmail.com'
+SMTP_PASSWORD = 'rhbb fhlu dsqm ilps'
