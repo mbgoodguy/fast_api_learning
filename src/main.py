@@ -1,4 +1,7 @@
+from redis import asyncio as aioredis
 from fastapi import FastAPI
+from fastapi_cache import FastAPICache
+from fastapi_cache.backends.redis import RedisBackend
 
 from src.auth.base_config import fastapi_users, auth_backend
 from src.auth.schemas import UserRead, UserCreate
@@ -21,3 +24,10 @@ app.include_router(
 )
 
 app.include_router(operations_router)
+
+
+@app.on_event("startup")
+# ф-ия отвечающая за действия при старте увикорн
+async def startup():
+    redis = aioredis.from_url("redis://localhost")
+    FastAPICache.init(RedisBackend(redis), prefix="fastapi-cache")
