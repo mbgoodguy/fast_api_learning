@@ -1,15 +1,10 @@
-[tool.poetry]
-name = "trading_proj"
-version = "0.1.0"
-description = ""
-authors = ["mbgoodguy <nerooren4001@gmail.com>"]
+[tool.pytest.ini_options]
+pythonpath = [
+    '.', 'src',
+]
+filterwarnings = ['ignore::UserWarning', 'ignore::DeprecationWarning:']
 
-[tool.poetry.dependencies]
-python = "^3.11"
-fastapi = {extras = ["all"], version = "^0.103.2"}
-
-[tool.poetry.dev-dependencies]
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+asyncio_mode='auto'  # need for auto-detecting async fixtures
+# In auto mode pytest-asyncio automatically adds the asyncio marker to all
+# asynchronous test functions. It will also take ownership of all async fixtures,
+# regardless of whether they are decorated with @pytest.fixture or @pytest_asyncio.fixture.
